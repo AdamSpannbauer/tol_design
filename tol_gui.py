@@ -45,11 +45,12 @@ FG_PALETTE = [
 
 # Leave these alone
 WINDOW_LABEL = "Press: r to regenerate; s to save; ESC to quit"
+DISPLAY_DIM = 750
 
 PARAMS = dict(
     bg_sparsity={'value': 70, 'label': 'Background Sparsity %'},
     fg_sparsity={'value': 10, 'label': 'Logo Sparsity %'},
-    resolution={'value': 50, 'label': "'Resolution'"},
+    resolution={'value': 50, 'label': "'Resolution'", 'max_val': 500},
     v_pad={'value': 4, 'label': 'Vertical Padding Row Count'},
     h_pad={'value': 16, 'label': 'Horizontal Padding Column Count'},
 )
@@ -64,10 +65,10 @@ def gen_design(path, output_dir, output_width=750):
 
     cv2.namedWindow(WINDOW_LABEL)
     for param in PARAMS.values():
-        max_val = 100
-        if param['label'] == "'Resolution'":
-            max_val = 500
-        cv2.createTrackbar(param['label'], WINDOW_LABEL, 0, max_val, noop)
+        min_val = 0 if 'min_val' not in param.keys() else param['min_val']
+        max_val = 100 if 'max_val' not in param.keys() else param['max_val']
+
+        cv2.createTrackbar(param['label'], WINDOW_LABEL, min_val, max_val, noop)
         cv2.setTrackbarPos(param['label'], WINDOW_LABEL, param['value'])
 
     og_im = np.copy(im)
@@ -80,7 +81,7 @@ def gen_design(path, output_dir, output_width=750):
             for param in PARAMS.values():
                 param['value'] = cv2.getTrackbarPos(param['label'], WINDOW_LABEL)
 
-            im = tol.pixelate(im, n_col=max(PARAMS['resolution']['value'], 3), pixel_size=1)
+            im = tol.pixelate(im, n_col=PARAMS['resolution']['value'], pixel_size=1)
             im = tol.add_border(im,
                                 vertical=PARAMS['v_pad']['value'],
                                 horizontal=PARAMS['h_pad']['value'],
@@ -92,9 +93,9 @@ def gen_design(path, output_dir, output_width=750):
                                fg_sparsity=PARAMS['fg_sparsity']['value'] / 100,
                                bg_sparsity=PARAMS['bg_sparsity']['value'] / 100)
 
-            im = imutils.resize(im, width=500)
-            if im.shape[0] > 500:
-                im = imutils.resize(im, height=500)
+            im = imutils.resize(im, width=DISPLAY_DIM)
+            if im.shape[0] > DISPLAY_DIM:
+                im = imutils.resize(im, height=DISPLAY_DIM)
 
         cv2.imshow(WINDOW_LABEL, im)
 
@@ -118,9 +119,9 @@ if __name__ == '__main__':
     ap.add_argument('-i', '--input', default='untero_logomockup.png',
                     help='Path to png image to use.')
     ap.add_argument('-o', '--output', default='output',
-                    help='Directory name to save output images to.')
+                    help='Name of directory to save output images to.')
     ap.add_argument('-w', '--width', default=1000, type=int,
-                    help="Width of output image in pixels (doesn't affect display size).")
+                    help="Width of saved image output in pixels (doesn't affect display size).")
     args = vars(ap.parse_args())
 
     gen_design(path=args['input'],

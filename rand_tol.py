@@ -37,14 +37,16 @@ def read_logo(path, bg_color=(255, 255, 255), bgr_range_lo=None, bgr_range_hi=No
     return image
 
 
-def write_logo(image, path, bg_color):
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2BGRA)
-    bg_y, bg_x, bg_z = np.where(image[:, :, :3] == bg_color)
-    image[bg_y, bg_x] = list(bg_color) + [0]
+def write_logo(image, path, bg_color, bg_2_transparent=False):
+    if bg_2_transparent:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2BGRA)
+        bg_y, bg_x, bg_z = np.where(image[:, :, :3] == bg_color)
+        image[bg_y, bg_x] = list(bg_color) + [0]
     cv2.imwrite(path, image)
 
 
 def pixelate(image, n_col=50, pixel_size=1):
+    n_col = max(1, n_col)
     shrunken = resize(image, width=n_col)
     return resize(shrunken, width=n_col * pixel_size)
 
