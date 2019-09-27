@@ -1,9 +1,7 @@
 # Generate Images for [tiredoflosing.us](https://www.tiredoflosing.us)
 
 <p align='center'>
-<kbd>
-<img src='readme/example_output.png' width=60%>
-</kbd>
+<img src='readme/example_output.png' width=40%>
 </p>
 
 ### About
@@ -29,7 +27,7 @@ Given, that the code was written for a one time use case, there are some inconis
 ### Usage:
 
 ```bash
-python3 tol_gui.py -i'path_to_input_image.png' -o 'path/to/output/folder'
+python3 tol_gui.py -i 'path_to_input_image.png' -o 'path/to/output/folder'
 ```
 
 #### Arguments:
@@ -49,9 +47,7 @@ python3 tol_gui.py -i'path_to_input_image.png' -o 'path/to/output/folder'
 When you run the above command a UI will appear to adjust the outputted image (seen below).  The inputs are sliders at the bottom of the screen and the keyboard keys listed in the tool bar of the UI's window.
 
 <p align='center'>
-<kbd>
 <img src='readme/example.gif' width=60%>
-</kbd>
 </p>
 
 #### About the Process & How to Fine Tune
