@@ -1,14 +1,30 @@
 # Generate Images for [tiredoflosing.us](https://www.tiredoflosing.us)
 
-<p align='center'>
-<img src='readme/example_output.png' width=40%>
-</p>
-
 ### About
 
 This project was written to help [tiredoflosing.us](https://www.tiredoflosing.us) ([instagram](https://www.instagram.com/tiredoflosing.us/)) in their design process.  The design is not at all mine, I just aided in the tooling, and they were open to the idea of open sourcing the code.
 
 Given, that the code was written for a one time use case, there are some inconisistencies in the code base.  ¯\\\_(ツ)\_/¯
+
+### Output
+
+#### IRL
+
+<p align='center'>
+<img src='readme/shirt_pics/front_gravel.jpg' width=40%>
+<img src='readme/shirt_pics/back_gravel.jpg' width=40%>
+</p>
+
+<p align='center'>
+<img src='readme/shirt_pics/zoom_output.jpg' width=40%>
+<img src='readme/shirt_pics/zoom_code.jpg' width=40%>
+</p>
+
+#### Digital
+
+<p align='center'>
+<img src='readme/example_output.png' width=40%>
+</p>
 
 ### Installation:
 1. Clone the repo and `cd` into the cloned repo's directory
