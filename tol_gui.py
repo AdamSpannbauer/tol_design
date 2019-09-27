@@ -31,7 +31,7 @@ import rand_tol as tol
 BG_COLOR_LO = (75, 75, 75)
 BG_COLOR_HI = (255, 255, 255)
 
-BG_COLOR = (255, 255, 255)
+BG_COLOR = (51, 255, 51)
 
 # Change these to be whatever RGB values you want.
 # If you want a color to appear more than the others
@@ -45,7 +45,7 @@ FG_PALETTE = [
 
 # Leave these alone
 WINDOW_LABEL = "Press: r to regenerate; s to save; ESC to quit"
-DISPLAY_DIM = 750
+DISPLAY_DIM = 500
 
 PARAMS = dict(
     bg_sparsity={'value': 70, 'label': 'Background Sparsity %'},
